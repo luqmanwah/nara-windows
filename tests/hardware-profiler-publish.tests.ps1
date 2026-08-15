@@ -7,6 +7,9 @@ $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $publishScript = Join-Path $projectRoot 'tools\build\Publish-HardwareProfiler.ps1'
 $dotnet = Join-Path $projectRoot '.tools\dotnet-10.0.400\dotnet.exe'
+if (-not (Test-Path -LiteralPath $dotnet) -and $env:CI -eq 'true') {
+    $dotnet = (Get-Command dotnet -ErrorAction Stop).Source
+}
 $launchArtifact = Join-Path $projectRoot 'artifacts\publish\hardware-profiler\framework-dependent\Nara.HardwareProfiler.dll'
 $output = Join-Path $projectRoot 'artifacts\hardware-inventory.published.json'
 $schema = Join-Path $projectRoot 'schemas\hardware-inventory.schema.json'

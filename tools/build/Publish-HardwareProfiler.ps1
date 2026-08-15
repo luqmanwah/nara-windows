@@ -9,6 +9,9 @@ $ErrorActionPreference = 'Stop'
 
 $projectRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $dotnet = Join-Path $projectRoot '.tools\dotnet-10.0.400\dotnet.exe'
+if (-not (Test-Path -LiteralPath $dotnet) -and $env:CI -eq 'true') {
+    $dotnet = (Get-Command dotnet -ErrorAction Stop).Source
+}
 $project = Join-Path $projectRoot 'src\Nara.HardwareProfiler\Nara.HardwareProfiler.csproj'
 $nugetConfig = Join-Path $projectRoot 'NuGet.Config'
 $publishRelativePath = if ($Mode -eq 'SelfContained') {

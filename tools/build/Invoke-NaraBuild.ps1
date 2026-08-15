@@ -9,6 +9,9 @@ $ErrorActionPreference = 'Stop'
 
 $projectRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $dotnet = Join-Path $projectRoot '.tools\dotnet-10.0.400\dotnet.exe'
+if (-not (Test-Path -LiteralPath $dotnet) -and $env:CI -eq 'true') {
+    $dotnet = (Get-Command dotnet -ErrorAction Stop).Source
+}
 $projects = @(
     (Join-Path $projectRoot 'src\Nara.HardwareProfiler\Nara.HardwareProfiler.csproj'),
     (Join-Path $projectRoot 'src\Nara.PolicyCompiler\Nara.PolicyCompiler.csproj'),
@@ -34,7 +37,7 @@ New-Item -ItemType Directory -Path $env:APPDATA -Force | Out-Null
 New-Item -ItemType Directory -Path $env:LOCALAPPDATA -Force | Out-Null
 
 if (-not (Test-Path -LiteralPath $dotnet)) {
-    throw 'Local .NET SDK is missing. Run tools\bootstrap\Install-LocalDotNetSdk.ps1 first.'
+    throw 'Local .NET SDK is missing. Run tools\bootstrap\Install-LocalDotNetSdk.ps1 first. CI may use an SDK provisioned by the trusted runner action.'
 }
 
 foreach ($project in $projects) {

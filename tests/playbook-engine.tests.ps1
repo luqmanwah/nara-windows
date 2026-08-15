@@ -6,6 +6,9 @@ $ErrorActionPreference = 'Stop'
 
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $dotnet = Join-Path $projectRoot '.tools\dotnet-10.0.400\dotnet.exe'
+if (-not (Test-Path -LiteralPath $dotnet) -and $env:CI -eq 'true') {
+    $dotnet = (Get-Command dotnet -ErrorAction Stop).Source
+}
 $profilerAssembly = Join-Path $projectRoot 'src\Nara.HardwareProfiler\bin\Release\net10.0-windows\Nara.HardwareProfiler.dll'
 $compilerAssembly = Join-Path $projectRoot 'src\Nara.PolicyCompiler\bin\Release\net10.0-windows\Nara.PolicyCompiler.dll'
 $brokerAssembly = Join-Path $projectRoot 'src\Nara.ApprovalBroker\bin\Release\net10.0\Nara.ApprovalBroker.dll'
