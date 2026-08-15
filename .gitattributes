@@ -1,0 +1,14 @@
+# Development signatures currently bind the exact UTF-8 LF bytes.
+# Keep signed JSON fixtures deterministic until canonical JSON signing replaces
+# raw-file signing before production.
+trust/*.json text eol=lf
+playbooks/*.json text eol=lf
+tests/fixtures/*.json text eol=lf
+
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+*.cs text eol=crlf
+*.csproj text eol=crlf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
