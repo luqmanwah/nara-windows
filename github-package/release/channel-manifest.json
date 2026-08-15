@@ -5,14 +5,15 @@
   "channels": {
     "stable": { "enabled": false, "latest": null },
     "preview": { "enabled": false, "latest": null },
-    "development": { "enabled": true, "latest": "0.1.1-development" }
+    "development": { "enabled": true, "latest": "0.1.2-development" }
   },
   "rules": {
     "allowBranchInstall": false,
     "allowRemoteScriptPipe": false,
     "requireReleaseAsset": true,
     "requireSha256": true,
-    "requireSignature": true,
+    "requireProductionSignatureForStable": true,
+    "developmentReleaseSignatureAvailable": false,
     "requireCompatibilityMatch": true
   }
 }

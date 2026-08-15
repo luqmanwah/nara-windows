@@ -4,7 +4,7 @@ Nara is a post-install, AI-assisted deployment layer for a fresh, official Windo
 
 ## Current status
 
-Development preview. The ISO overlay removes a conservative allowlist of consumer AppX packages. The Nara package performs hardware profiling, profile selection, a hash-bound approval, three reversible visual settings, and rollback.
+Development preview. The ISO overlay removes a conservative allowlist of consumer AppX packages. The Nara package performs hardware profiling, profile selection, a hash-bound approval, three reversible visual settings, and rollback. Version 0.1.2 adds a release-bound bootstrap, standalone recovery pack, offline handoff bundle, and physical clean-install runbook.
 
 ## Build
 
@@ -14,11 +14,14 @@ Run from PowerShell:
 .\build\Build-Release.ps1
 ```
 
-The result is written to `artifacts/Nara-Deployment-development/` with:
+The result is written to `artifacts/Nara-Release-<version>/assets/` with:
 
-- `ISO-OVERLAY/` — optional overlay for an official Windows installer prepared before reinstall;
-- `NARA/` — post-install package published as a GitHub Release asset;
-- `release-manifest.json` — SHA-256 for every file.
+- `NaraBootstrap.ps1` — release-bound downloader that verifies the descriptor, ZIP, and internal file manifest;
+- `Nara-Unattend-*.zip` — optional overlay for an official Windows installer;
+- `Nara-Deployment-*.zip` — online post-install package;
+- `Nara-Recovery-*.zip` — standalone rollback and diagnostic tools;
+- `Nara-Offline-*.zip` — all handoff material to keep outside the Windows disk;
+- `nara-release.json` and `SHA256SUMS.txt` — immutable asset metadata.
 
 ## Installation sequence
 

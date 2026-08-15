@@ -1,19 +1,25 @@
 {
   "schemaVersion": "1.0.0",
-  "releaseId": "nara-windows-0.1.1-development",
-  "version": "0.1.1-development",
+  "releaseId": "nara-windows-0.1.2-development",
+  "version": "0.1.2-development",
   "channel": "development",
   "productionReady": false,
-  "minimumBootstrapVersion": "0.1.0",
+  "minimumBootstrapVersion": "0.1.2-development",
   "supportedArchitectures": ["x64"],
   "supportedWindowsBuilds": ["26200"],
   "testedTargets": [],
   "assets": {
-    "unattendPack": "Nara-Unattend-0.1.1-development.zip",
-    "deploymentPackage": "Nara-Deployment-0.1.1-development.zip"
+    "bootstrap": "NaraBootstrap.ps1",
+    "unattendPack": "Nara-Unattend-0.1.2-development.zip",
+    "deploymentPackage": "Nara-Deployment-0.1.2-development.zip",
+    "recoveryPack": "Nara-Recovery-0.1.2-development.zip",
+    "offlinePack": "Nara-Offline-0.1.2-development.zip",
+    "releaseDescriptor": "nara-release.json",
+    "checksums": "SHA256SUMS.txt"
   },
   "verification": {
     "requireSha256": true,
-    "requireSignature": true
+    "bootstrapPinsReleaseDescriptorHash": true,
+    "productionSignatureAvailable": false
   }
 }

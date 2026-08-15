@@ -31,3 +31,6 @@ jobs:
       - name: Test transaction and approval engine
         shell: pwsh
         run: .\tests\playbook-engine.tests.ps1
+      - name: Test GitHub release and offline package
+        shell: pwsh
+        run: .\tests\github-release-package.tests.ps1

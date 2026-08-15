@@ -42,7 +42,10 @@ Write-NaraJson -Value $snapshot -Path $backupPath
 try {
     Set-NaraSettings -Settings $settings
     New-Item -ItemType Directory -Path (Join-Path $installRoot 'Core') -Force | Out-Null
+    New-Item -ItemType Directory -Path (Join-Path $installRoot 'Bootstrap') -Force | Out-Null
     Copy-Item -LiteralPath (Join-Path $PackageRoot 'Core\Nara.Core.psm1') -Destination (Join-Path $installRoot 'Core\Nara.Core.psm1') -Force
+    Copy-Item -LiteralPath (Join-Path $PackageRoot 'Bootstrap\Restore-Nara.ps1') -Destination (Join-Path $installRoot 'Bootstrap\Restore-Nara.ps1') -Force
+    Copy-Item -LiteralPath (Join-Path $PackageRoot 'RESTORE-NARA.cmd') -Destination (Join-Path $installRoot 'RESTORE-NARA.cmd') -Force
     [ordered]@{ installedAtUtc=[DateTime]::UtcNow.ToString('o'); profile=$profile; planSha256=$planHash; backupPath=$backupPath; status='installed' } |
         ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $installRoot 'installation.json') -Encoding UTF8
 } catch {

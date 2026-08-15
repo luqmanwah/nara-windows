@@ -35,6 +35,8 @@
 - [ ] Provisioning Pack lulus VM gate.
 - [ ] ISO Builder lulus clean-install gate.
 - [ ] Instalasi perangkat fisik disetujui pemilik.
+- [x] GitHub development bootstrap terikat hash release descriptor dan memverifikasi paket serta manifest internal.
+- [x] Recovery pack, offline handoff bundle, dan physical clean-install runbook tersedia untuk development testing.
 
 ## Langkah berikutnya
 
