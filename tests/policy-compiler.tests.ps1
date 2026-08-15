@@ -253,4 +253,5 @@ if ($LASTEXITCODE -ne 2) {
     throw 'Unknown CLI arguments must return exit code 2.'
 }
 
+$global:LASTEXITCODE = 0
 Write-Output "PASS profile=$($plan.selectedProfile.profileId) rules=$($plan.actions.Count) approvals=$($plan.summary.approvalRequired) blocked=$($plan.summary.blocked) memory=11/12/64GB"

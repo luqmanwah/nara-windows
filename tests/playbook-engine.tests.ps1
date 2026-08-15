@@ -407,4 +407,5 @@ Copy-Item -LiteralPath $rotatedReport -Destination (Join-Path $latestRoot 'rotat
 Copy-Item -LiteralPath $consentPath -Destination (Join-Path $latestRoot 'signed-consent-request.json') -Force
 Copy-Item -LiteralPath $successApproval -Destination (Join-Path $latestRoot 'signed-approval-receipt.json') -Force
 
+$global:LASTEXITCODE = 0
 Write-Output "PASS brokerChallenge=1 consentSignature=1 receiptSignature=1 committed=1 idempotent=1 rollback=1 replayReject=1 expiryReject=1 installationReject=1 rotation=1 retirement=1 revocation=1 hashBinding=1 ledgerTamper=1 revision=$($state.revision)"
