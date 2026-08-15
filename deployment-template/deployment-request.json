@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "1.0.0",
+  "deploymentMode": "development",
+  "requestedOutcome": "Install Nara on a fresh Windows system with the lightest stable compatible profile.",
+  "phase": "plan-only",
+  "requiresExplicitApprovalBeforeMutation": true,
+  "allowApiBilling": false,
+  "allowCredentialCollection": false
+}

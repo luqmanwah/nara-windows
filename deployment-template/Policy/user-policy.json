@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0.0",
+  "profilePreference": "auto-detect",
+  "updateMode": "recommended",
+  "resourcePriority": "minimum-idle",
+  "localModelPreference": "auto-by-hardware",
+  "debloatApproval": "single-immutable-bundle",
+  "protected": [
+    "defender",
+    "windows-update",
+    "servicing",
+    "recovery",
+    "drivers",
+    "activation",
+    "networking",
+    "required-runtimes"
+  ]
+}

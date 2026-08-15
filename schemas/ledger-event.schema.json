@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nara.local/schemas/ledger-event.schema.json",
+  "title": "Nara Transaction Ledger Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "eventId",
+    "transactionId",
+    "approvalId",
+    "sequence",
+    "recordedAtUtc",
+    "stage",
+    "outcome",
+    "actionId",
+    "stateBeforeSha256",
+    "stateAfterSha256",
+    "previousEventSha256",
+    "message",
+    "eventSha256"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "eventId": { "type": "string", "format": "uuid" },
+    "transactionId": { "type": "string", "format": "uuid" },
+    "approvalId": { "type": "string", "format": "uuid" },
+    "sequence": { "type": "integer", "minimum": 1 },
+    "recordedAtUtc": { "type": "string", "format": "date-time" },
+    "stage": { "enum": ["precheck", "checkpoint", "apply", "verify", "commit", "failure", "revert"] },
+    "outcome": { "enum": ["success", "rejected", "failed", "started", "restored"] },
+    "actionId": { "type": ["string", "null"], "pattern": "^NARA-[A-Z0-9]+(?:-[A-Z0-9]+)+$" },
+    "stateBeforeSha256": { "$ref": "#/$defs/shaOrNull" },
+    "stateAfterSha256": { "$ref": "#/$defs/shaOrNull" },
+    "previousEventSha256": { "$ref": "#/$defs/sha" },
+    "message": { "type": "string", "minLength": 1 },
+    "eventSha256": { "$ref": "#/$defs/sha" }
+  },
+  "$defs": {
+    "sha": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "shaOrNull": { "type": ["string", "null"], "pattern": "^[a-f0-9]{64}$" }
+  }
+}

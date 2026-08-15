@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "rules": [
+    { "id": "ultra-lite", "when": { "ramGiBLessThan": 12 }, "localLlm": "none", "coreMode": "on-demand", "defaultUpdateMode": "recommended" },
+    { "id": "balanced", "when": { "ramGiBMinimum": 12, "ramGiBLessThan": 24 }, "localLlm": "optional-small-after-benchmark", "coreMode": "on-demand", "defaultUpdateMode": "recommended" },
+    { "id": "ai-workstation-lite", "when": { "ramGiBMinimum": 24, "gpuVramGiBLessThan": 8 }, "localLlm": "quantized-small-or-medium-after-benchmark", "coreMode": "on-demand-with-idle-unload", "defaultUpdateMode": "recommended" },
+    { "id": "ai-workstation", "when": { "ramGiBMinimum": 24, "gpuVramGiBMinimum": 8 }, "localLlm": "select-after-cpu-gpu-storage-benchmark", "coreMode": "on-demand", "defaultUpdateMode": "recommended" }
+  ],
+  "workProfiles": ["general", "creator", "gaming", "ai-workstation"]
+}

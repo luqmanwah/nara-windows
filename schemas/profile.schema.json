@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nara.local/schemas/profile.schema.json",
+  "title": "Nara Device Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "profileId",
+    "profileVersion",
+    "displayName",
+    "deviceProfile",
+    "approvalMode",
+    "minimumRamBytes",
+    "goals",
+    "policies"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "profileId": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "profileVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "displayName": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "deviceProfile": {
+      "type": "string",
+      "enum": ["lite", "balanced", "creator", "gaming", "ai-workstation", "custom"]
+    },
+    "approvalMode": {
+      "type": "string",
+      "enum": ["automatic", "recommended", "manual"]
+    },
+    "minimumRamBytes": { "type": "integer", "minimum": 4294967296 },
+    "goals": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 160 }
+    },
+    "policies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ui", "ai", "security", "updates", "services", "drivers"],
+      "properties": {
+        "ui": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["animations", "transparency"],
+          "properties": {
+            "animations": { "enum": ["on", "off", "user-choice"] },
+            "transparency": { "enum": ["on", "off", "user-choice"] }
+          }
+        },
+        "ai": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["runtimeMode", "idleUnloadMinutes"],
+          "properties": {
+            "runtimeMode": { "enum": ["on-demand", "always-on", "disabled"] },
+            "idleUnloadMinutes": { "type": "integer", "minimum": 1, "maximum": 120 }
+          }
+        },
+        "security": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["defenderRealtimeProtection", "mandatorySecurityUpdates"],
+          "properties": {
+            "defenderRealtimeProtection": { "const": "keep" },
+            "mandatorySecurityUpdates": { "const": "keep" }
+          }
+        },
+        "updates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["cumulativeSecurity", "optionalPreview", "featureUpdates"],
+          "properties": {
+            "cumulativeSecurity": { "enum": ["install", "recommend"] },
+            "optionalPreview": { "enum": ["defer", "manual"] },
+            "featureUpdates": { "enum": ["defer", "manual", "recommend"] }
+          }
+        },
+        "services": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["strategy", "allowBlanketDisable"],
+          "properties": {
+            "strategy": { "enum": ["safe-trigger-start", "windows-default"] },
+            "allowBlanketDisable": { "const": false }
+          }
+        },
+        "drivers": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source", "onMissingHardwareData"],
+          "properties": {
+            "source": { "const": "official-vendor" },
+            "onMissingHardwareData": { "const": "block-and-report" }
+          }
+        }
+      }
+    }
+  }
+}

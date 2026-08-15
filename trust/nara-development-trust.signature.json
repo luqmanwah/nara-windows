@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "1.0.0",
+  "rootKeyId": "nara-stage2-root-2026",
+  "algorithm": "ecdsa-p256-sha256",
+  "contentSha256": "74c694d39701bec64ec94b6481cc86ca4f63b8f41e395e61ab0ab87ca79a288b",
+  "signatureBase64": "MEUCIBb6rzz3H83b6KZplYa/9QRZLZviEF4joK03f4f5P15aAiEAur/Dqm7BNCt170DryxIy9iwkOD4SjCJ8oRvbvtl3G6A="
+}

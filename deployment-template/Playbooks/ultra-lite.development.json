@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "1.0.0",
+  "playbookId": "nara-ultra-lite-development",
+  "status": "proposal-only",
+  "actions": [
+    { "id": "NARA-UI-001", "title": "Disable animations", "risk": "low", "requiresApproval": true, "verification": ["Read effective visual setting"], "rollback": ["Restore captured registry value"] },
+    { "id": "NARA-UI-002", "title": "Disable transparency", "risk": "low", "requiresApproval": true, "verification": ["Read effective transparency setting"], "rollback": ["Restore captured registry value"] },
+    { "id": "NARA-AUDIT-001", "title": "Inventory optional consumer applications", "risk": "none", "requiresApproval": false, "verification": ["Produce inventory report"], "rollback": ["No mutation"] },
+    { "id": "NARA-DEBLOAT-001", "title": "Propose removal of optional consumer applications", "risk": "medium", "requiresApproval": true, "verification": ["Verify protected packages remain", "Verify shell and Store infrastructure remain healthy"], "rollback": ["Re-register or reinstall each approved package from recorded source"] }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0.0",
+  "phases": [
+    { "order": 10, "id": "preflight", "mutatesWindows": false, "failure": "stop" },
+    { "order": 20, "id": "inventory", "mutatesWindows": false, "failure": "stop" },
+    { "order": 30, "id": "resolve-profile", "mutatesWindows": false, "failure": "stop" },
+    { "order": 40, "id": "build-plan", "mutatesWindows": false, "failure": "stop" },
+    { "order": 50, "id": "approve-bundle", "mutatesWindows": false, "failure": "stop" },
+    { "order": 60, "id": "checkpoint", "mutatesWindows": false, "failure": "stop" },
+    { "order": 70, "id": "apply-safe-settings", "mutatesWindows": true, "failure": "rollback-transaction" },
+    { "order": 80, "id": "apply-approved-packages", "mutatesWindows": true, "failure": "rollback-transaction" },
+    { "order": 90, "id": "reboot-resume", "mutatesWindows": true, "failure": "resume-or-rollback" },
+    { "order": 100, "id": "verify", "mutatesWindows": false, "failure": "rollback-transaction" },
+    { "order": 110, "id": "finalize", "mutatesWindows": false, "failure": "report-incomplete" }
+  ]
+}

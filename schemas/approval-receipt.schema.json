@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nara.local/schemas/approval-receipt.schema.json",
+  "title": "Nara Locally Signed Single-Use Approval Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "approvalId", "sessionNonce", "installationId", "scope", "actorType",
+    "approvalMode", "consentRequestSha256", "actionPlanSha256", "playbookSha256",
+    "playbookSignatureKeyId", "approvedActionIds", "issuedAtUtc", "expiresAtUtc",
+    "singleUse", "consentTextVersion", "localApprovalKeyId", "signatureAlgorithm", "signatureBase64"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "3.0.0" },
+    "approvalId": { "type": "string", "format": "uuid" },
+    "sessionNonce": { "type": "string", "format": "uuid" },
+    "installationId": { "type": "string", "format": "uuid" },
+    "scope": { "const": "simulation-only" },
+    "actorType": { "const": "local-user-simulation" },
+    "approvalMode": { "const": "recommended" },
+    "consentRequestSha256": { "$ref": "#/$defs/sha256" },
+    "actionPlanSha256": { "$ref": "#/$defs/sha256" },
+    "playbookSha256": { "$ref": "#/$defs/sha256" },
+    "playbookSignatureKeyId": { "type": "string", "minLength": 1 },
+    "approvedActionIds": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^NARA-[A-Z0-9]+(?:-[A-Z0-9]+)+$" }
+    },
+    "issuedAtUtc": { "type": "string", "format": "date-time" },
+    "expiresAtUtc": { "type": "string", "format": "date-time" },
+    "singleUse": { "const": true },
+    "consentTextVersion": { "const": "broker-v1" },
+    "localApprovalKeyId": { "type": "string", "format": "uuid" },
+    "signatureAlgorithm": { "const": "ecdsa-p256-sha256" },
+    "signatureBase64": { "type": "string", "minLength": 80, "maxLength": 128 }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

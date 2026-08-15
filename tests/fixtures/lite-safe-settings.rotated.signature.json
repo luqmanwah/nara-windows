@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "1.0.0",
+  "keyId": "nara-stage2-rotated-2026",
+  "algorithm": "ecdsa-p256-sha256",
+  "contentSha256": "8c78fc32ad9047531caa9a910f85381c423bbd9f9a7730103dd47ff161a93966",
+  "signatureBase64": "MEUCIC3fJSFoLev8ZG3YWQeWJMsqp5RXnFxxpy64oFlhGdHaAiEAl0d/c/3NzQ1xAJejdU8wZBTqZSfqHSjq+MnqrPabm44="
+}

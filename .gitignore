@@ -1,0 +1,39 @@
+# Build output
+bin/
+obj/
+artifacts/
+dist/
+.tools/
+
+# Local machine data and secrets
+*.local.json
+*.secret.json
+*.key
+*.pfx
+.env
+.env.*
+
+# Generated installation media
+*.iso
+*.wim
+*.esd
+*.vhd
+*.vhdx
+vm/**/*.vdi
+vm/**/*.vbox
+vm/**/*.vbox-prev
+vm/**/*.nvram
+vm/**/Logs/
+vm/**/Snapshots/
+vm/.vbox-home/
+
+# Generated deployment evidence (machine-local)
+deployment-src/Logs/
+deployment-template/Inventory/*.json
+
+# IDE and operating system
+.vs/
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini

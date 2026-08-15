@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "downloadDefault": "deny",
+  "requireUserApproval": true,
+  "requireHash": true,
+  "requireSignatureWhenAvailable": true,
+  "allowedDomains": [
+    "openai.com",
+    "developers.openai.com",
+    "microsoft.com",
+    "download.microsoft.com",
+    "catalog.update.microsoft.com",
+    "github.com",
+    "githubusercontent.com",
+    "acer.com",
+    "global-download.acer.com",
+    "nvidia.com",
+    "amd.com",
+    "intel.com",
+    "realtek.com"
+  ]
+}

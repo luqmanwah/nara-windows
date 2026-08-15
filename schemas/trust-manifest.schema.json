@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nara.local/schemas/trust-manifest.schema.json",
+  "title": "Nara Signed Trust Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "manifestId", "manifestVersion", "environment", "issuedAtUtc", "expiresAtUtc", "keys", "revokedKeyIds"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "manifestId": { "const": "nara-playbook-trust" },
+    "manifestVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "environment": { "const": "development" },
+    "issuedAtUtc": { "type": "string", "format": "date-time" },
+    "expiresAtUtc": { "type": "string", "format": "date-time" },
+    "keys": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["keyId", "purpose", "algorithm", "publicKeySpkiBase64", "status", "notBeforeUtc", "notAfterUtc"],
+        "properties": {
+          "keyId": { "type": "string", "minLength": 1 },
+          "purpose": { "const": "playbook-signing" },
+          "algorithm": { "const": "ecdsa-p256-sha256" },
+          "publicKeySpkiBase64": { "type": "string", "minLength": 100, "maxLength": 160 },
+          "status": { "enum": ["active", "retired", "revoked"] },
+          "notBeforeUtc": { "type": "string", "format": "date-time" },
+          "notAfterUtc": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "revokedKeyIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}

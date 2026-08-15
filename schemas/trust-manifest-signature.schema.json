@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nara.local/schemas/trust-manifest-signature.schema.json",
+  "title": "Nara Detached Trust Manifest Signature",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "rootKeyId", "algorithm", "contentSha256", "signatureBase64"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "rootKeyId": { "const": "nara-stage2-root-2026" },
+    "algorithm": { "const": "ecdsa-p256-sha256" },
+    "contentSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "signatureBase64": { "type": "string", "minLength": 80, "maxLength": 128 }
+  }
+}

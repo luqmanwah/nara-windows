@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0.0",
+  "default": "deny",
+  "supportedTargets": [
+    {
+      "architecture": "x64",
+      "build": "26200",
+      "edition": "Windows 11 Home Single Language",
+      "status": "candidate",
+      "targetModels": [],
+      "requiredEvidence": ["hardware inventory", "Windows edition", "UBR", "network status", "free disk space"]
+    }
+  ],
+  "rule": "A target becomes supported only after clean-install, apply, reboot, rollback, update, and application smoke tests pass for that build family."
+}

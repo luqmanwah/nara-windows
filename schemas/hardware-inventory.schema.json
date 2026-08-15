@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nara.local/schemas/hardware-inventory.schema.json",
+  "title": "Nara Hardware Inventory",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "collectorVersion",
+    "collectedAtUtc",
+    "platform",
+    "privacy",
+    "os",
+    "device",
+    "cpu",
+    "memory",
+    "gpus",
+    "capabilities",
+    "sources",
+    "warnings"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "collectorVersion": { "type": "string", "minLength": 1 },
+    "collectedAtUtc": { "type": "string", "format": "date-time" },
+    "platform": { "const": "windows" },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identifiersCollected"],
+      "properties": {
+        "identifiersCollected": { "const": false }
+      }
+    },
+    "os": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["productName", "editionId", "displayVersion", "build", "ubr", "architecture", "conflicts"],
+      "properties": {
+        "productName": { "type": ["string", "null"] },
+        "caption": { "type": ["string", "null"] },
+        "editionId": { "type": ["string", "null"] },
+        "displayVersion": { "type": ["string", "null"] },
+        "build": { "type": ["string", "null"] },
+        "ubr": { "type": ["integer", "null"], "minimum": 0 },
+        "architecture": { "type": "string", "minLength": 1 },
+        "conflicts": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "device": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manufacturer", "model", "biosVersion", "biosReleaseDate"],
+      "properties": {
+        "manufacturer": { "type": ["string", "null"] },
+        "model": { "type": ["string", "null"] },
+        "biosVersion": { "type": ["string", "null"] },
+        "biosReleaseDate": { "type": ["string", "null"] }
+      }
+    },
+    "cpu": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "cores", "logicalProcessors"],
+      "properties": {
+        "name": { "type": ["string", "null"] },
+        "cores": { "type": ["integer", "null"], "minimum": 1 },
+        "logicalProcessors": { "type": ["integer", "null"], "minimum": 1 }
+      }
+    },
+    "memory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["physicallyInstalledBytes", "usableTotalBytes", "availableBytes"],
+      "properties": {
+        "physicallyInstalledBytes": { "type": ["integer", "null"], "minimum": 0 },
+        "usableTotalBytes": { "type": ["integer", "null"], "minimum": 0 },
+        "availableBytes": { "type": ["integer", "null"], "minimum": 0 }
+      }
+    },
+    "gpus": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "driverVersion", "adapterMemoryBytes"],
+        "properties": {
+          "name": { "type": ["string", "null"] },
+          "driverVersion": { "type": ["string", "null"] },
+          "adapterMemoryBytes": { "type": ["integer", "null"], "minimum": 0 }
+        }
+      }
+    },
+    "storage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["model", "mediaType", "interfaceType", "sizeBytes"],
+        "properties": {
+          "model": { "type": ["string", "null"] },
+          "mediaType": { "type": ["string", "null"] },
+          "interfaceType": { "type": ["string", "null"] },
+          "sizeBytes": { "type": ["integer", "null"], "minimum": 0 }
+        }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["administrator", "cimAvailable", "hypervisorPresent", "virtualizationFirmwareEnabled"],
+      "properties": {
+        "administrator": { "type": "boolean" },
+        "cimAvailable": { "type": "boolean" },
+        "hypervisorPresent": { "type": ["boolean", "null"] },
+        "virtualizationFirmwareEnabled": { "type": ["boolean", "null"] }
+      }
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["registry", "nativeApi", "cim"],
+      "properties": {
+        "registry": { "$ref": "#/$defs/sourceStatus" },
+        "nativeApi": { "$ref": "#/$defs/sourceStatus" },
+        "cim": { "$ref": "#/$defs/sourceStatus" }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "sourceStatus": {
+      "type": "string",
+      "enum": ["success", "partial", "unavailable", "error"]
+    }
+  }
+}

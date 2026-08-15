@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nara.local/schemas/fake-windows-state.schema.json",
+  "title": "Nara Fake Windows State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "adapter", "installationId", "approvalKeyId", "approvalPublicKeySpkiBase64", "revision", "settings"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "adapter": { "const": "fake-windows" },
+    "installationId": { "type": "string", "format": "uuid" },
+    "approvalKeyId": { "type": ["string", "null"], "format": "uuid" },
+    "approvalPublicKeySpkiBase64": { "type": ["string", "null"], "minLength": 100, "maxLength": 160 },
+    "revision": { "type": "integer", "minimum": 0 },
+    "settings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["uiAnimations", "uiTransparency", "aiRuntimeMode", "aiIdleUnloadMinutes"],
+      "properties": {
+        "uiAnimations": { "type": "boolean" },
+        "uiTransparency": { "type": "boolean" },
+        "aiRuntimeMode": { "enum": ["disabled", "on-demand", "always-on"] },
+        "aiIdleUnloadMinutes": { "type": "integer", "minimum": 1, "maximum": 120 }
+      }
+    }
+  }
+}

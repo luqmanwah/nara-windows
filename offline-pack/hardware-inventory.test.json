@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.0.0",
+  "collectorVersion": "0.2.0-poc",
+  "collectedAtUtc": "2026-01-01T00:00:00Z",
+  "platform": "windows",
+  "privacy": {
+    "identifiersCollected": false
+  },
+  "os": {
+    "productName": "Windows 11 Pro",
+    "caption": null,
+    "editionId": "Professional",
+    "displayVersion": "24H2",
+    "build": "26100",
+    "ubr": 1,
+    "architecture": "x64",
+    "conflicts": [
+      "Synthetic test fixture; not a physical device inventory."
+    ]
+  },
+  "device": {
+    "manufacturer": "Nara Test Lab",
+    "model": "Synthetic x64 Device",
+    "biosVersion": "TEST-1.0",
+    "biosReleaseDate": "01/01/2026"
+  },
+  "cpu": {
+    "name": "Synthetic 8-Core Processor",
+    "cores": null,
+    "logicalProcessors": 12
+  },
+  "memory": {
+    "physicallyInstalledBytes": 17179869184,
+    "usableTotalBytes": 16800000000,
+    "availableBytes": 12000000000
+  },
+  "gpus": [],
+  "storage": [],
+  "capabilities": {
+    "administrator": false,
+    "cimAvailable": false,
+    "hypervisorPresent": null,
+    "virtualizationFirmwareEnabled": null
+  },
+  "sources": {
+    "registry": "success",
+    "nativeApi": "success",
+    "cim": "unavailable"
+  },
+  "warnings": [
+    "CIM/WMI inventory is unavailable in the current execution context."
+  ]
+}

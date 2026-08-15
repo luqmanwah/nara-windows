@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0.0",
+  "packageNamePatterns": [
+    "Clipchamp.Clipchamp", "Microsoft.BingNews", "Microsoft.BingWeather",
+    "Microsoft.GamingApp", "Microsoft.GetHelp", "Microsoft.Getstarted",
+    "Microsoft.MicrosoftOfficeHub", "Microsoft.MicrosoftSolitaireCollection",
+    "Microsoft.People", "Microsoft.PowerAutomateDesktop", "Microsoft.WindowsFeedbackHub",
+    "Microsoft.XboxApp", "Microsoft.XboxGameOverlay", "Microsoft.XboxGamingOverlay",
+    "Microsoft.XboxIdentityProvider", "Microsoft.XboxSpeechToTextOverlay",
+    "Microsoft.YourPhone", "Microsoft.ZuneMusic", "Microsoft.ZuneVideo",
+    "Microsoft.Copilot", "Microsoft.Windows.Ai.Copilot.Provider",
+    "MicrosoftWindows.Client.CoPilot", "MicrosoftWindows.Client.WebExperience",
+    "MSTeams", "MicrosoftTeams"
+  ]
+}

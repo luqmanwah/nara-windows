@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0.0",
+  "playbookId": "lite-safe-settings",
+  "playbookVersion": "0.1.0",
+  "adapter": "fake-windows",
+  "description": "Simulation-only Lite settings for UI effects and the local AI runtime lifecycle.",
+  "actions": [
+    {
+      "ruleId": "NARA-LITE-UI-001",
+      "operations": [
+        {
+          "setting": "ui.animations",
+          "valueType": "boolean",
+          "expected": true,
+          "desired": false
+        }
+      ]
+    },
+    {
+      "ruleId": "NARA-LITE-UI-002",
+      "operations": [
+        {
+          "setting": "ui.transparency",
+          "valueType": "boolean",
+          "expected": true,
+          "desired": false
+        }
+      ]
+    },
+    {
+      "ruleId": "NARA-LITE-AI-001",
+      "operations": [
+        {
+          "setting": "ai.runtimeMode",
+          "valueType": "string",
+          "expected": "disabled",
+          "desired": "on-demand"
+        },
+        {
+          "setting": "ai.idleUnloadMinutes",
+          "valueType": "integer",
+          "expected": 15,
+          "desired": 5
+        }
+      ]
+    }
+  ]
+}

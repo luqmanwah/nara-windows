@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nara.local/schemas/fake-approval-key.schema.json",
+  "title": "Nara Test-Only Plaintext Approval Key",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "protection", "keyId", "installationId", "algorithm", "createdAtUtc", "publicKeySpkiBase64", "privateKeyPkcs8Base64"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "protection": { "const": "test-only-plaintext" },
+    "keyId": { "type": "string", "format": "uuid" },
+    "installationId": { "type": "string", "format": "uuid" },
+    "algorithm": { "const": "ecdsa-p256-sha256" },
+    "createdAtUtc": { "type": "string", "format": "date-time" },
+    "publicKeySpkiBase64": { "type": "string", "minLength": 100, "maxLength": 160 },
+    "privateKeyPkcs8Base64": { "type": "string", "minLength": 120, "maxLength": 256 }
+  }
+}

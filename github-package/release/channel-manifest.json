@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0.0",
+  "product": "Nara Windows Deployment",
+  "distribution": "github-releases-only",
+  "channels": {
+    "stable": { "enabled": false, "latest": null },
+    "preview": { "enabled": false, "latest": null },
+    "development": { "enabled": true, "latest": "0.1.1-development" }
+  },
+  "rules": {
+    "allowBranchInstall": false,
+    "allowRemoteScriptPipe": false,
+    "requireReleaseAsset": true,
+    "requireSha256": true,
+    "requireSignature": true,
+    "requireCompatibilityMatch": true
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nara.local/schemas/action-plan.schema.json",
+  "title": "Nara Dry-Run Action Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "compilerVersion",
+    "generatedAtUtc",
+    "status",
+    "input",
+    "deviceSummary",
+    "selectedProfile",
+    "policyPrecedence",
+    "actions",
+    "summary"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "compilerVersion": { "type": "string", "minLength": 1 },
+    "generatedAtUtc": { "type": "string", "format": "date-time" },
+    "status": { "const": "dry-run" },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inventorySha256", "profileSha256"],
+      "properties": {
+        "inventorySha256": { "$ref": "#/$defs/sha256" },
+        "profileSha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "deviceSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["osBuild", "installedRamBytes", "gpuCount", "hardwareDataComplete"],
+      "properties": {
+        "osBuild": { "type": ["string", "null"] },
+        "installedRamBytes": { "type": ["integer", "null"], "minimum": 0 },
+        "gpuCount": { "type": "integer", "minimum": 0 },
+        "hardwareDataComplete": { "type": "boolean" }
+      }
+    },
+    "selectedProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profileId", "profileVersion", "deviceProfile", "approvalMode"],
+      "properties": {
+        "profileId": { "type": "string", "minLength": 1 },
+        "profileVersion": { "type": "string", "minLength": 1 },
+        "deviceProfile": { "type": "string", "minLength": 1 },
+        "approvalMode": { "type": "string", "enum": ["automatic", "recommended", "manual"] }
+      }
+    },
+    "policyPrecedence": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "uniqueItems": true,
+      "prefixItems": [
+        { "const": "mandatory-security" },
+        { "const": "explicit-user-intent" },
+        { "const": "device-profile" },
+        { "const": "hardware-capability" },
+        { "const": "approval-mode" },
+        { "const": "nara-policy-version" }
+      ]
+    },
+    "actions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/action" }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "keep", "recommend", "defer", "blocked", "approvalRequired"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 1 },
+        "keep": { "type": "integer", "minimum": 0 },
+        "recommend": { "type": "integer", "minimum": 0 },
+        "defer": { "type": "integer", "minimum": 0 },
+        "blocked": { "type": "integer", "minimum": 0 },
+        "approvalRequired": { "type": "integer", "minimum": 0 }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "stringList": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "category",
+        "title",
+        "description",
+        "decision",
+        "rationale",
+        "risk",
+        "requiresAdmin",
+        "approval",
+        "resourceImpact",
+        "preconditions",
+        "verification",
+        "rollback",
+        "evidence"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^NARA-[A-Z0-9]+(?:-[A-Z0-9]+)+$" },
+        "category": { "enum": ["security", "ui", "ai", "update", "service", "driver", "resource"] },
+        "title": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 },
+        "decision": { "enum": ["keep", "recommend", "defer", "blocked"] },
+        "rationale": { "type": "string", "minLength": 1 },
+        "risk": { "enum": ["low", "medium", "high"] },
+        "requiresAdmin": { "type": "boolean" },
+        "approval": { "enum": ["not-required", "required-before-apply", "blocked"] },
+        "resourceImpact": { "type": "string", "minLength": 1 },
+        "preconditions": { "$ref": "#/$defs/stringList" },
+        "verification": { "$ref": "#/$defs/stringList" },
+        "rollback": { "$ref": "#/$defs/stringList" },
+        "evidence": { "$ref": "#/$defs/stringList" }
+      }
+    }
+  }
+}

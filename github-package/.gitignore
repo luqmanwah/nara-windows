@@ -1,0 +1,13 @@
+artifacts/
+Logs/
+*.iso
+*.wim
+*.esd
+*.swm
+*.vhd
+*.vhdx
+*.ffu
+*.key
+*.pfx
+*.p12
+*.token

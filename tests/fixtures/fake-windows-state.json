@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "adapter": "fake-windows",
+  "installationId": "3f978a3a-2a3c-4cbe-9e62-664236f52e93",
+  "approvalKeyId": null,
+  "approvalPublicKeySpkiBase64": null,
+  "revision": 0,
+  "settings": {
+    "uiAnimations": true,
+    "uiTransparency": true,
+    "aiRuntimeMode": "disabled",
+    "aiIdleUnloadMinutes": 15
+  }
+}

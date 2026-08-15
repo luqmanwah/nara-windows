@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0.0",
+  "profileId": "lite-recommended",
+  "profileVersion": "1.0.0",
+  "displayName": "Lite + Recommended",
+  "deviceProfile": "lite",
+  "approvalMode": "recommended",
+  "minimumRamBytes": 12884901888,
+  "goals": [
+    "Keep Windows idle usage low without breaking supported security controls.",
+    "Run local AI only when needed and release its memory after inactivity.",
+    "Prefer compatible, official drivers and updates with visible user approval."
+  ],
+  "policies": {
+    "ui": {
+      "animations": "off",
+      "transparency": "off"
+    },
+    "ai": {
+      "runtimeMode": "on-demand",
+      "idleUnloadMinutes": 5
+    },
+    "security": {
+      "defenderRealtimeProtection": "keep",
+      "mandatorySecurityUpdates": "keep"
+    },
+    "updates": {
+      "cumulativeSecurity": "recommend",
+      "optionalPreview": "defer",
+      "featureUpdates": "defer"
+    },
+    "services": {
+      "strategy": "safe-trigger-start",
+      "allowBlanketDisable": false
+    },
+    "drivers": {
+      "source": "official-vendor",
+      "onMissingHardwareData": "block-and-report"
+    }
+  }
+}

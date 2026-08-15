@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0.0",
+  "catalogMode": "development-local",
+  "requireSupportedBuild": true,
+  "requireImmutableBundleHash": true,
+  "requireDeterministicPhaseOrder": true,
+  "packages": [
+    { "id": "nara-profiler", "version": "0.2.0-poc", "status": "prototype", "source": "local", "requiresNetwork": false },
+    { "id": "nara-policy-engine", "version": "0.1.0-poc", "status": "prototype", "source": "local", "requiresNetwork": false },
+    { "id": "nara-playbook-engine", "version": "0.1.0-poc", "status": "simulation-only", "source": "local", "requiresNetwork": false },
+    { "id": "nara-approval-broker", "version": "0.1.0-poc", "status": "prototype", "source": "local", "requiresNetwork": false },
+    { "id": "codex-handoff", "version": "1.0.0", "status": "workspace-instructions", "source": "local", "requiresNetwork": true }
+  ],
+  "rule": "Packages marked prototype or simulation-only may be analyzed but not represented as production-ready."
+}
