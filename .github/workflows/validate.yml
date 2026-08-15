@@ -1,0 +1,33 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - name: Validate public package source
+        shell: pwsh
+        run: .\github-package\build\Validate-Source.ps1
+      - name: Build Nara core
+        shell: pwsh
+        run: .\tools\build\Invoke-NaraBuild.ps1
+      - name: Test hardware profiler
+        shell: pwsh
+        run: .\tests\hardware-profiler-csharp.tests.ps1
+      - name: Test policy compiler
+        shell: pwsh
+        run: .\tests\policy-compiler.tests.ps1
+      - name: Test transaction and approval engine
+        shell: pwsh
+        run: .\tests\playbook-engine.tests.ps1
